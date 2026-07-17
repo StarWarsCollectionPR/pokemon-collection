@@ -3,7 +3,18 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Vintage Pokémon Cards · San Juan, PR</title>
+<title>Vintage Pokémon Cards for Sale · San Juan, PR</title>
+<meta name="description" content="152 vintage 1999–2002 WOTC Pokémon cards for sale — Base Set, Jungle, Fossil, Team Rocket & Legendary Collection, including holos. Browse and message on Telegram to buy. Offers and bundle deals welcome."/>
+<link rel="canonical" href="https://estebi123.github.io/pokemon-collection/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Vintage Pokémon Cards for Sale · San Juan, PR"/>
+<meta property="og:description" content="152 vintage 1999–2002 WOTC Pokémon cards — Base, Jungle, Fossil, Team Rocket & Legendary Collection, holos included. Message on Telegram to buy."/>
+<meta property="og:url" content="https://estebi123.github.io/pokemon-collection/"/>
+<meta property="og:image" content="https://estebi123.github.io/pokemon-collection/images/151.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Vintage Pokémon Cards for Sale · San Juan, PR"/>
+<meta name="twitter:description" content="152 vintage WOTC Pokémon cards — holos included. Message on Telegram to buy."/>
+<meta name="twitter:image" content="https://estebi123.github.io/pokemon-collection/images/151.jpg"/>
 <style>
 :root{--bg:#0d0f14;--card:#161a22;--line:#262c38;--txt:#e9edf4;--mut:#9aa4b5;--acc:#ffcb05;--tg:#2aabee}
 *{box-sizing:border-box}
@@ -11,6 +22,7 @@ body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple
 header{padding:22px 16px 8px;text-align:center;border-bottom:1px solid var(--line)}
 h1{margin:0;font-size:22px;letter-spacing:.5px}
 .sub{color:var(--mut);font-size:13px;margin-top:4px}
+.tagline{color:var(--acc);font-size:12.5px;margin-top:6px;font-weight:600}
 .wrap{max-width:1100px;margin:0 auto;padding:14px}
 .controls{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
 input[type=search]{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:15px}
@@ -34,7 +46,13 @@ select{padding:9px 11px;border-radius:9px;border:1px solid var(--line);backgroun
 .btns{display:flex;gap:8px;margin-top:8px}
 .btn{flex:1;text-align:center;text-decoration:none;padding:9px;border-radius:9px;font-size:13.5px;font-weight:600}
 .tg{background:var(--tg);color:#fff}
-.iid{color:var(--mut);font-size:11px;margin-top:6px}
+.iid{color:var(--mut);font-size:11px;margin-top:6px;cursor:pointer;user-select:none}
+.iid:hover{color:var(--txt)}
+.iid.copied{color:var(--acc)}
+.card.sold{opacity:.6}
+.card.sold .pr{color:var(--mut);text-decoration:line-through}
+.soldstamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-14deg);background:rgba(200,40,40,.92);color:#fff;font-size:22px;font-weight:800;letter-spacing:2px;padding:5px 16px;border-radius:8px;border:2px solid #fff}
+.soldbtn{flex:1;text-align:center;padding:9px;border-radius:9px;font-size:13.5px;font-weight:600;background:#2a3140;color:var(--mut)}
 footer{color:var(--mut);font-size:12px;text-align:center;padding:22px}
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:50}
 .lb.on{display:flex}
@@ -50,6 +68,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:22px}
 <header>
 <h1>Vintage Pokémon Cards</h1>
 <div class="sub">1999–2002 WOTC collection · San Juan, PR · message on Telegram to buy</div>
+<div class="tagline" id="tagline"></div>
 </header>
 <div class="wrap">
 <div class="controls">
@@ -57,7 +76,8 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:22px}
 <div class="row">
 <span class="lbl">Sort</span>
 <select id="sort">
-<option value="featured">Binder order</option>
+<option value="value">Featured &mdash; most valuable</option>
+<option value="featured">Binder order (#)</option>
 <option value="price-asc">Price: Low &rarr; High</option>
 <option value="price-desc">Price: High &rarr; Low</option>
 <option value="name-asc">Name: A &rarr; Z</option>
@@ -70,7 +90,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:22px}
 <div class="count" id="count"></div>
 <div class="grid" id="grid"></div>
 </div>
-<footer>Prices are starting points &middot; all OBO (or best offer). Message to buy &mdash; mention the item #.</footer>
+<footer>Prices are starting points &middot; all OBO (or best offer) &middot; bundle discounts on 5+ cards. Message to buy &mdash; mention the item #.</footer>
 <div class="lb" id="lb"><span class="x" onclick="closeLb()">&times;</span><img id="lbimg" src=""/><div class="cap" id="lbcap"></div><div class="nav"><span onclick="lbStep(-1)">&#8249;</span><span onclick="lbStep(1)">&#8250;</span></div></div>
 <script>
 const DEF_COND="Played · edge and corner wear";
@@ -232,7 +252,7 @@ const CONTACT={"telegram":"estebi1234"};
 const SETORDER={"Base Set":1,"Jungle":2,"Fossil":3,"Team Rocket":4,"Legendary Collection":5,"Black Star Promo":6};
 const RARORDER={"Common":1,"Uncommon":2,"Rare":3,"Holo Rare":4,"Promo":5};
 const SETSHORT={"Base Set":"Base","Jungle":"Jungle","Fossil":"Fossil","Team Rocket":"Rocket","Legendary Collection":"Legendary","Black Star Promo":"Promo"};
-let state={q:"",set:"All",rar:"All",sort:"featured"};
+let state={q:"",set:"All",rar:"All",sort:"value"};
 let lbList=[],lbI=0;
 
 function photo(p){return "images/"+p.id+".jpg";}
@@ -267,11 +287,14 @@ function render(){
   });
   const s=state.sort;
   const pv=p=>p.price==null?Infinity:p.price;
+  const pvHi=p=>p.price==null?-1:p.price;
   if(s==="price-asc") list.sort((a,b)=>pv(a)-pv(b)||a.id.localeCompare(b.id));
-  else if(s==="price-desc") list.sort((a,b)=>{if(a.price==null&&b.price!=null)return 1;if(b.price==null&&a.price!=null)return -1;return pv(b)-pv(a)||a.id.localeCompare(b.id);});
+  else if(s==="price-desc"||s==="value") list.sort((a,b)=>pvHi(b)-pvHi(a)||a.id.localeCompare(b.id));
   else if(s==="name-asc") list.sort((a,b)=>a.name.localeCompare(b.name));
   else if(s==="name-desc") list.sort((a,b)=>b.name.localeCompare(a.name));
   else list.sort((a,b)=>a.id.localeCompare(b.id));
+  // sold cards always sink to the bottom, keeping the sort order within each group
+  list=[...list.filter(p=>!p.sold),...list.filter(p=>p.sold)];
 
   document.getElementById("count").textContent=list.length+" card"+(list.length!==1?"s":"");
   const g=document.getElementById("grid");
@@ -280,13 +303,15 @@ function render(){
   lbList=list;
   list.forEach((p,idx)=>{
     const pt=priceText(p);
-    const card=document.createElement("div");card.className="card";
+    const card=document.createElement("div");card.className="card"+(p.sold?" sold":"");
     let buy="";
-    if(CONTACT.telegram) buy+=`<a class="btn tg" href="https://t.me/${CONTACT.telegram}" target="_blank" rel="noopener">Message on Telegram</a>`;
+    if(p.sold) buy=`<span class="soldbtn">Sold</span>`;
+    else if(CONTACT.telegram) buy=`<a class="btn tg" href="https://t.me/${CONTACT.telegram}?text=${encodeURIComponent("Hi! Interested in item #"+p.id+" ("+p.name+" "+p.num+")")}" target="_blank" rel="noopener">Message on Telegram</a>`;
     card.innerHTML=`
       <div class="ph" onclick="openLb(${idx})">
-        <img src="${photo(p)}" loading="lazy" alt="${p.name} ${p.num} ${p.set}"/>
+        <img src="${photo(p)}" loading="lazy" alt="${p.name} ${p.num} ${p.set} Pokemon card"/>
         <span class="badge">#${p.id} &middot; ${SETSHORT[p.set]}</span>
+        ${p.sold?'<span class="soldstamp">SOLD</span>':''}
       </div>
       <div class="body">
         <div class="nm">${p.name}</div>
@@ -294,10 +319,28 @@ function render(){
         <div class="cond">${condOf(p)}</div>
         <div class="pr">${pt.big} ${pt.obo?`<span class="obo">${pt.obo}</span>`:""}</div>
         <div class="btns">${buy}</div>
-        <div class="iid">Item #${p.id} &mdash; mention this when you message</div>
+        <div class="iid" title="Tap to copy" onclick="copyItem('${p.id}',this)">Item #${p.id} &mdash; tap to copy, mention when you message</div>
       </div>`;
     g.appendChild(card);
   });
+}
+
+function copyItem(id,el){
+  const txt="#"+id;
+  const done=()=>{const o=el.textContent;el.classList.add("copied");el.textContent="Copied "+txt+" ✓";setTimeout(()=>{el.classList.remove("copied");el.textContent=o;},1400);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(done);}
+  else done();
+}
+
+function renderStats(){
+  const live=PRODUCTS.filter(p=>!p.sold);
+  const holos=live.filter(p=>p.rar==="Holo Rare");
+  const minHolo=holos.reduce((m,p)=>p.price!=null&&p.price<m?p.price:m,Infinity);
+  const sets=[...new Set(live.map(p=>SETSHORT[p.set]))];
+  let t=live.length+" cards · "+sets.join(" · ");
+  if(isFinite(minHolo)) t+=" · holos from $"+minHolo;
+  t+=" · offers & bundles welcome";
+  document.getElementById("tagline").textContent=t;
 }
 
 function lbShow(){
@@ -321,6 +364,7 @@ document.getElementById("sort").addEventListener("change",e=>{state.sort=e.targe
 
 buildChips("sets",uniq("set").sort((a,b)=>(SETORDER[a]||9)-(SETORDER[b]||9)),"set");
 buildChips("rars",uniq("rar").sort((a,b)=>(RARORDER[a]||9)-(RARORDER[b]||9)),"rar");
+renderStats();
 render();
 </script>
 </body>
