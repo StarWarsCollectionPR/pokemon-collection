@@ -6,6 +6,7 @@
 <title>Vintage Pokémon Cards for Sale · San Juan, PR</title>
 <meta name="description" content="152 vintage 1999–2002 WOTC Pokémon cards for sale — Base Set, Jungle, Fossil, Team Rocket & Legendary Collection, including holos. Browse and message on Telegram to buy. Offers and bundle deals welcome."/>
 <link rel="canonical" href="https://starwarscollectionpr.github.io/pokemon-collection/"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='12' y='4' width='40' height='56' rx='6' fill='%23ffcb05' stroke='%231a1a1a' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='10' fill='%231a1a1a'/%3E%3C/svg%3E"/>
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Vintage Pokémon Cards for Sale · San Juan, PR"/>
 <meta property="og:description" content="152 vintage 1999–2002 WOTC Pokémon cards — Base, Jungle, Fossil, Team Rocket & Legendary Collection, holos included. Message on Telegram to buy."/>
@@ -19,10 +20,16 @@
 :root{--bg:#0d0f14;--card:#161a22;--line:#262c38;--txt:#e9edf4;--mut:#9aa4b5;--acc:#ffcb05;--tg:#2aabee}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-header{padding:22px 16px 8px;text-align:center;border-bottom:1px solid var(--line)}
+body.hasbar{padding-bottom:120px}
+header{position:relative;padding:22px 16px 8px;text-align:center;border-bottom:1px solid var(--line)}
 h1{margin:0;font-size:22px;letter-spacing:.5px}
 .sub{color:var(--mut);font-size:13px;margin-top:4px}
 .tagline{color:var(--acc);font-size:12.5px;margin-top:6px;font-weight:600}
+.xlink{display:inline-block;margin-top:8px;color:var(--tg);font-size:12.5px;text-decoration:none}
+.xlink:hover{text-decoration:underline}
+.langsw{position:absolute;top:12px;right:14px;display:flex;gap:5px}
+.lc{cursor:pointer;font-size:12px;font-weight:700;color:var(--mut);padding:4px 9px;border:1px solid var(--line);border-radius:999px;user-select:none}
+.lc.on{background:var(--acc);color:#1a1a1a;border-color:var(--acc)}
 .wrap{max-width:1100px;margin:0 auto;padding:14px}
 .controls{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
 input[type=search]{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:15px}
@@ -43,55 +50,88 @@ select{padding:9px 11px;border-radius:9px;border:1px solid var(--line);backgroun
 .cond{color:var(--mut);font-size:12px}
 .pr{font-size:18px;font-weight:700;color:var(--acc);margin-top:2px}
 .obo{font-size:11px;color:var(--mut);font-weight:600}
-.btns{display:flex;gap:8px;margin-top:8px}
+.btns{display:flex;flex-direction:column;gap:7px;margin-top:8px}
 .btn{flex:1;text-align:center;text-decoration:none;padding:9px;border-radius:9px;font-size:13.5px;font-weight:600}
+button.btn{font-family:inherit;border:none;cursor:pointer}
 .tg{background:var(--tg);color:#fff}
-.iid{color:var(--mut);font-size:11px;margin-top:6px;cursor:pointer;user-select:none}
-.iid:hover{color:var(--txt)}
-.iid.copied{color:var(--acc)}
+.add{background:#2a3140;color:var(--txt);border:1px solid var(--line)!important}
+.add.on{background:var(--acc);color:#1a1a1a;border-color:var(--acc)!important}
+.iid{color:var(--mut);font-size:11px;margin-top:6px}
+.lnk{cursor:pointer;color:var(--tg);text-decoration:underline}
 .card.sold{opacity:.6}
 .card.sold .pr{color:var(--mut);text-decoration:line-through}
 .soldstamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-14deg);background:rgba(200,40,40,.92);color:#fff;font-size:22px;font-weight:800;letter-spacing:2px;padding:5px 16px;border-radius:8px;border:2px solid #fff}
 .soldbtn{flex:1;text-align:center;padding:9px;border-radius:9px;font-size:13.5px;font-weight:600;background:#2a3140;color:var(--mut)}
 footer{color:var(--mut);font-size:12px;text-align:center;padding:22px}
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:50}
+footer a{color:var(--tg)}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:50;padding:10px}
 .lb.on{display:flex}
-.lb img{max-width:94vw;max-height:80vh;object-fit:contain}
-.lb .x{position:absolute;top:14px;right:18px;color:#fff;font-size:30px;cursor:pointer}
-.lb .nav{display:flex;gap:24px;margin-top:14px}
-.lb .nav span{color:#fff;font-size:30px;cursor:pointer;padding:6px 16px;background:rgba(255,255,255,.1);border-radius:10px}
-.lb .cap{color:#fff;margin-top:10px;font-size:14px}
+.lb img{max-width:94vw;max-height:58vh;object-fit:contain}
+.lb .x{position:absolute;top:10px;right:16px;color:#fff;font-size:30px;cursor:pointer;z-index:2}
+.lb .nav{display:flex;gap:24px;margin-top:10px}
+.lb .nav span{color:#fff;font-size:26px;cursor:pointer;padding:2px 16px;background:rgba(255,255,255,.1);border-radius:10px}
+.lb .cap{color:#fff;margin-top:10px;font-size:14px;text-align:center}
+.lbpr{color:var(--mut);font-size:12.5px;margin-top:4px;text-align:center}
+.lbpr b{color:var(--acc);font-size:17px}
+.lbbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px;width:min(94vw,460px)}
+.lbbtns .btn{flex:1 1 140px}
 .empty{color:var(--mut);text-align:center;padding:40px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#11151c;border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.45);display:none}
+body.hasbar .bar{display:block}
+.barin{max-width:1100px;margin:0 auto;padding:10px 14px}
+.brow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bsum{flex:1 1 150px;font-size:14px;font-weight:700}
+.bsum span{color:var(--acc)}
+.bbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 13px;border-radius:9px;border:1px solid var(--line);background:#2a3140;color:var(--txt);cursor:pointer;text-decoration:none}
+.bbtn.send{background:var(--tg);border-color:var(--tg);color:#fff}
+.bhint{color:var(--mut);font-size:11.5px;margin-top:6px}
+.blist{display:none;max-height:38vh;overflow:auto;margin-bottom:8px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.blist.on{display:block}
+.bi{display:flex;gap:8px;align-items:center;font-size:13px;padding:5px 0}
+.bi .bn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bi .bp{color:var(--acc);font-weight:700}
+.bi .rm{cursor:pointer;color:var(--mut);font-size:18px;padding:0 6px;line-height:1}
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-20px);background:#222a36;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:60;border:1px solid var(--line);max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 <header>
+<div class="langsw"><span class="lc" id="lang-es" data-lang="es">ES</span><span class="lc" id="lang-en" data-lang="en">EN</span></div>
 <h1>Vintage Pokémon Cards</h1>
-<div class="sub">1999–2002 WOTC collection · San Juan, PR · message on Telegram to buy</div>
+<div class="sub" id="subt">1999–2002 WOTC collection · San Juan, PR · message on Telegram to buy</div>
 <div class="tagline" id="tagline"></div>
+<a class="xlink" id="xlink" href="https://starwarscollectionpr.github.io/star-wars-collection-/">Also for sale: my Star Wars collection &rarr;</a>
 </header>
 <div class="wrap">
 <div class="controls">
 <input id="q" type="search" placeholder="Search name, number, set, rarity..."/>
 <div class="row">
-<span class="lbl">Sort</span>
+<span class="lbl" id="l-sort">Sort</span>
 <select id="sort">
-<option value="value">Featured &mdash; most valuable</option>
-<option value="featured">Binder order (#)</option>
-<option value="price-asc">Price: Low &rarr; High</option>
-<option value="price-desc">Price: High &rarr; Low</option>
-<option value="name-asc">Name: A &rarr; Z</option>
-<option value="name-desc">Name: Z &rarr; A</option>
+<option value="value"></option>
+<option value="featured"></option>
+<option value="price-asc"></option>
+<option value="price-desc"></option>
+<option value="name-asc"></option>
+<option value="name-desc"></option>
 </select>
 </div>
-<div class="row" id="sets"><span class="lbl">Set</span></div>
-<div class="row" id="rars"><span class="lbl">Rarity</span></div>
+<div class="row" id="sets"><span class="lbl" id="l-set">Set</span></div>
+<div class="row" id="rars"><span class="lbl" id="l-rar">Rarity</span></div>
 </div>
 <div class="count" id="count"></div>
+<noscript><div style="max-width:640px;margin:14px auto;padding:12px 16px;border:1px solid #262c38;border-radius:10px;color:#e9edf4;text-align:center;font-size:14px">152 vintage 1999&ndash;2002 Pok&eacute;mon cards for sale in San Juan, PR. Please enable JavaScript to browse the catalog &middot; Activa JavaScript para ver el cat&aacute;logo. Telegram: <a href="https://t.me/cosmicfellow" style="color:#2aabee">@cosmicfellow</a></div></noscript>
 <div class="grid" id="grid"></div>
 </div>
-<footer>Prices are starting points &middot; all OBO (or best offer) &middot; bundle discounts on 5+ cards. Message to buy &mdash; mention the item #.</footer>
-<div class="lb" id="lb"><span class="x" onclick="closeLb()">&times;</span><img id="lbimg" src=""/><div class="cap" id="lbcap"></div><div class="nav"><span onclick="lbStep(-1)">&#8249;</span><span onclick="lbStep(1)">&#8250;</span></div></div>
+<footer><span id="foot"></span><br/><br/><a id="xlink2" href="https://starwarscollectionpr.github.io/star-wars-collection-/"></a></footer>
+<div class="lb" id="lb"><span class="x" id="lbx">&times;</span><img id="lbimg" alt=""/><div class="cap" id="lbcap"></div><div class="lbpr" id="lbpr"></div><div class="lbbtns" id="lbbtns"></div><div class="nav"><span id="lbprev">&#8249;</span><span id="lbnext">&#8250;</span></div></div>
+<div class="bar" id="bar"><div class="barin">
+<div class="blist" id="blist"></div>
+<div class="brow"><div class="bsum" id="bsum"></div><button class="bbtn" id="bview"></button><button class="bbtn" id="bclear"></button><a class="bbtn send" id="bsend" target="_blank" rel="noopener"></a></div>
+<div class="bhint" id="bhint"></div>
+</div></div>
+<div class="toast" id="toast"></div>
 <script>
 const DEF_COND="Played · edge and corner wear";
 const PRODUCTS=[
@@ -249,39 +289,86 @@ const PRODUCTS=[
 {id:"152",name:"Mewtwo",num:"10/102",set:"Base Set",year:"1999",rar:"Holo Rare",price:16}
 ];
 const CONTACT={"telegram":"cosmicfellow"};
+const SITE="https://starwarscollectionpr.github.io/pokemon-collection/";
+const BUNDLE_MIN=5;
 const SETORDER={"Base Set":1,"Jungle":2,"Fossil":3,"Team Rocket":4,"Legendary Collection":5,"Black Star Promo":6};
 const RARORDER={"Common":1,"Uncommon":2,"Rare":3,"Holo Rare":4,"Promo":5};
 const SETSHORT={"Base Set":"Base","Jungle":"Jungle","Fossil":"Fossil","Team Rocket":"Rocket","Legendary Collection":"Legendary","Black Star Promo":"Promo"};
+const RAR_ES={"Common":"Común","Uncommon":"Poco común","Rare":"Rara","Holo Rare":"Rara Holo","Promo":"Promo"};
+const COND_ES={
+ "Played · edge and corner wear":"Jugada · desgaste en bordes y esquinas",
+ "Played · edge wear, some surface dirt":"Jugada · desgaste en bordes, algo de suciedad en la superficie",
+ "Played · noticeable edge wear":"Jugada · desgaste notable en los bordes",
+ "Played · second copy":"Jugada · segunda copia",
+ "Played · small pen mark on artwork":"Jugada · pequeña marca de bolígrafo en la ilustración",
+ "Played · crease at bottom corner":"Jugada · doblez en la esquina inferior",
+ "Played · pen marks on artwork":"Jugada · marcas de bolígrafo en la ilustración",
+ "Played · 1st Edition stamp":"Jugada · sello de 1ª Edición",
+ "Played · Kids WB “First Movie” stamp":"Jugada · sello Kids WB “First Movie”"
+};
+const I18N={
+ en:{sub:"1999–2002 WOTC collection · San Juan, PR · message on Telegram to buy",search:"Search name, number, set, rarity...",sort:"Sort",value:"Featured — most valuable",binder:"Binder order (#)",plh:"Price: Low → High",phl:"Price: High → Low",naz:"Name: A → Z",nza:"Name: Z → A",set:"Set",rar:"Rarity",all:"All",card:"card",cards:"cards",makeoffer:"Make offer",obo:"or best offer",tg:"Message on Telegram",add:"+ Add to bundle",added:"✓ In bundle — tap to remove",sold:"Sold",soldstamp:"SOLD",iid:"Item #",link:"🔗 copy link",linktoast:"Card link copied",none:"No cards match.",footer:"Prices are starting points · all OBO (or best offer) · bundle discounts on 5+ cards. Message to buy — mention the item #.",holosfrom:"holos from $",tagend:"offers & bundles welcome",xlink:"Also for sale: my Star Wars collection →",bundle:"Your bundle",send:"Send on Telegram",clear:"Clear",view:"View list",hide:"Hide list",disc:"5+ cards — ask for the bundle discount when you message.",more:"Add {n} more to ask for a bundle discount.",msg1:"Hi! Interested in item #{id} ({name} {num})",bmsg:"Hi! I'd like to buy these {n} cards:",btotal:"Listed total: ${t}",bdisc:"What's your bundle price?",msgtoast:"Message copied — paste it if Telegram opens empty",offer:"offer"},
+ es:{sub:"Colección WOTC 1999–2002 · San Juan, PR · escríbeme por Telegram para comprar",search:"Buscar nombre, número, set, rareza...",sort:"Ordenar",value:"Destacadas — más valiosas",binder:"Orden de carpeta (#)",plh:"Precio: menor → mayor",phl:"Precio: mayor → menor",naz:"Nombre: A → Z",nza:"Nombre: Z → A",set:"Set",rar:"Rareza",all:"Todas",card:"carta",cards:"cartas",makeoffer:"Haz una oferta",obo:"o mejor oferta",tg:"Escríbeme por Telegram",add:"+ Añadir al paquete",added:"✓ En tu paquete — toca para quitar",sold:"Vendida",soldstamp:"VENDIDA",iid:"Artículo #",link:"🔗 copiar enlace",linktoast:"Enlace de la carta copiado",none:"No hay cartas que coincidan.",footer:"Los precios son puntos de partida · todo OBO (o mejor oferta) · descuento por paquete en 5+ cartas. Escríbeme para comprar — menciona el # del artículo.",holosfrom:"holos desde $",tagend:"ofertas y paquetes bienvenidos",xlink:"También en venta: mi colección de Star Wars →",bundle:"Tu paquete",send:"Enviar por Telegram",clear:"Vaciar",view:"Ver lista",hide:"Ocultar lista",disc:"5+ cartas — pide el descuento por paquete al escribir.",more:"Añade {n} más para pedir descuento por paquete.",msg1:"¡Hola! Me interesa el artículo #{id} ({name} {num})",bmsg:"¡Hola! Quiero comprar estas {n} cartas:",btotal:"Total de lista: ${t}",bdisc:"¿Cuál sería tu precio por el paquete?",msgtoast:"Mensaje copiado — pégalo si Telegram abre vacío",offer:"oferta"}
+};
+let lang=(function(){try{const s=localStorage.getItem("lang");if(s==="es"||s==="en")return s;}catch(e){}return /^es/i.test(navigator.language||"")?"es":"en";})();
 let state={q:"",set:"All",rar:"All",sort:"value"};
-let lbList=[],lbI=0;
+let lbList=[],lbI=0,listOpen=false;
 
+function T(){return I18N[lang];}
+function $(id){return document.getElementById(id);}
+function byId(id){return PRODUCTS.find(p=>p.id===id);}
 function photo(p){return "images/"+p.id+".jpg";}
-function condOf(p){return p.cond||DEF_COND;}
+function thumb(p){return "images/thumbs/"+p.id+".webp";}
+function condOf(p){const c=p.cond||DEF_COND;return lang==="es"?(COND_ES[c]||c):c;}
+function rarLabel(r){return lang==="es"?(RAR_ES[r]||r):r;}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
 function uniq(key){return [...new Set(PRODUCTS.map(p=>p[key]))];}
+function tgLink(msg){return "https://t.me/"+CONTACT.telegram+"?text="+encodeURIComponent(msg);}
+function singleMsg(p){return T().msg1.replace("{id}",p.id).replace("{name}",p.name).replace("{num}",p.num);}
+function showToast(m){const el=$("toast");el.textContent=m;el.classList.add("on");clearTimeout(window._tt);window._tt=setTimeout(()=>el.classList.remove("on"),2200);}
+function copyText(s){try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(s).catch(()=>{});}catch(e){}}
 
-function buildChips(containerId,values,stateKey){
-  const c=document.getElementById(containerId);
+let bundle=(function(){try{const b=JSON.parse(localStorage.getItem("pkbundle")||"[]");return Array.isArray(b)?b:[];}catch(e){return [];}})();
+bundle=bundle.filter(id=>{const p=byId(id);return p&&!p.sold;});
+function saveBundle(){try{localStorage.setItem("pkbundle",JSON.stringify(bundle));}catch(e){}}
+
+function buildChips(containerId,values,stateKey,labelFn){
+  const c=$(containerId);
+  [...c.querySelectorAll(".chip")].forEach(x=>x.remove());
   ["All",...values].forEach(v=>{
     const el=document.createElement("span");
     el.className="chip"+(state[stateKey]===v?" on":"");
-    el.textContent=v;
+    el.textContent=v==="All"?T().all:labelFn(v);
     el.onclick=()=>{state[stateKey]=v;[...c.querySelectorAll(".chip")].forEach(x=>x.classList.remove("on"));el.classList.add("on");render();};
     c.appendChild(el);
   });
 }
+function rebuildChips(){
+  buildChips("sets",uniq("set").sort((a,b)=>(SETORDER[a]||9)-(SETORDER[b]||9)),"set",v=>v);
+  buildChips("rars",uniq("rar").sort((a,b)=>(RARORDER[a]||9)-(RARORDER[b]||9)),"rar",rarLabel);
+}
 
 function priceText(p){
-  if(p.price==null) return {big:"Make offer",obo:""};
-  return {big:"$"+p.price,obo:"or best offer"};
+  if(p.price==null) return {big:T().makeoffer,obo:""};
+  return {big:"$"+p.price,obo:T().obo};
+}
+function buyButtons(p){
+  const t=T();
+  if(p.sold) return `<span class="soldbtn">${t.sold}</span>`;
+  const inB=bundle.includes(p.id);
+  let b=`<button class="btn add${inB?" on":""}" data-id="${p.id}">${inB?t.added:t.add}</button>`;
+  if(CONTACT.telegram) b+=`<a class="btn tg" href="${tgLink(singleMsg(p))}" target="_blank" rel="noopener">${t.tg}</a>`;
+  return b;
 }
 
 function render(){
+  const t=T();
   let list=PRODUCTS.filter(p=>{
     if(state.set!=="All"&&p.set!==state.set) return false;
     if(state.rar!=="All"&&p.rar!==state.rar) return false;
     if(state.q){
-      const t=(p.name+" "+p.num+" "+p.set+" "+p.rar+" "+p.year).toLowerCase();
-      if(!t.includes(state.q.toLowerCase())) return false;
+      const tx=(p.name+" "+p.num+" "+p.set+" "+p.rar+" "+rarLabel(p.rar)+" "+p.year+" #"+p.id).toLowerCase();
+      if(!tx.includes(state.q.toLowerCase())) return false;
     }
     return true;
   });
@@ -296,76 +383,170 @@ function render(){
   // sold cards always sink to the bottom, keeping the sort order within each group
   list=[...list.filter(p=>!p.sold),...list.filter(p=>p.sold)];
 
-  document.getElementById("count").textContent=list.length+" card"+(list.length!==1?"s":"");
-  const g=document.getElementById("grid");
+  $("count").textContent=list.length+" "+(list.length!==1?t.cards:t.card);
+  const g=$("grid");
   g.innerHTML="";
-  if(!list.length){g.innerHTML='<div class="empty">No cards match.</div>';return;}
   lbList=list;
-  list.forEach((p,idx)=>{
+  if(!list.length){g.innerHTML='<div class="empty">'+t.none+'</div>';return;}
+  list.forEach(p=>{
     const pt=priceText(p);
-    const card=document.createElement("div");card.className="card"+(p.sold?" sold":"");
-    let buy="";
-    if(p.sold) buy=`<span class="soldbtn">Sold</span>`;
-    else if(CONTACT.telegram) buy=`<a class="btn tg" href="https://t.me/${CONTACT.telegram}?text=${encodeURIComponent("Hi! Interested in item #"+p.id+" ("+p.name+" "+p.num+")")}" target="_blank" rel="noopener">Message on Telegram</a>`;
+    const card=document.createElement("div");card.className="card"+(p.sold?" sold":"");card.id="item-"+p.id;
     card.innerHTML=`
-      <div class="ph" onclick="openLb(${idx})">
-        <img src="${photo(p)}" loading="lazy" alt="${p.name} ${p.num} ${p.set} Pokemon card"/>
+      <div class="ph" data-id="${p.id}">
+        <img src="${thumb(p)}" loading="lazy" decoding="async" alt="${esc(p.name+" "+p.num+" "+p.set)} Pokemon card" onerror="this.onerror=null;this.src='${photo(p)}'"/>
         <span class="badge">#${p.id} &middot; ${SETSHORT[p.set]}</span>
-        ${p.sold?'<span class="soldstamp">SOLD</span>':''}
+        ${p.sold?'<span class="soldstamp">'+t.soldstamp+'</span>':''}
       </div>
       <div class="body">
-        <div class="nm">${p.name}</div>
-        <div class="ln">${p.num} &middot; ${p.set} &middot; ${p.year} &middot; ${p.rar}</div>
-        <div class="cond">${condOf(p)}</div>
+        <div class="nm">${esc(p.name)}</div>
+        <div class="ln">${p.num} &middot; ${p.set} &middot; ${p.year} &middot; ${rarLabel(p.rar)}</div>
+        <div class="cond">${esc(condOf(p))}</div>
         <div class="pr">${pt.big} ${pt.obo?`<span class="obo">${pt.obo}</span>`:""}</div>
-        <div class="btns">${buy}</div>
-        <div class="iid" title="Tap to copy" onclick="copyItem('${p.id}',this)">Item #${p.id} &mdash; tap to copy, mention when you message</div>
+        <div class="btns">${buyButtons(p)}</div>
+        <div class="iid">${t.iid}${p.id} &middot; <span class="lnk" data-id="${p.id}">${t.link}</span></div>
       </div>`;
     g.appendChild(card);
   });
 }
 
-function copyItem(id,el){
-  const txt="#"+id;
-  const done=()=>{const o=el.textContent;el.classList.add("copied");el.textContent="Copied "+txt+" ✓";setTimeout(()=>{el.classList.remove("copied");el.textContent=o;},1400);};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(done);}
-  else done();
-}
-
 function renderStats(){
+  const t=T();
   const live=PRODUCTS.filter(p=>!p.sold);
   const holos=live.filter(p=>p.rar==="Holo Rare");
   const minHolo=holos.reduce((m,p)=>p.price!=null&&p.price<m?p.price:m,Infinity);
   const sets=[...new Set(live.map(p=>SETSHORT[p.set]))];
-  let t=live.length+" cards · "+sets.join(" · ");
-  if(isFinite(minHolo)) t+=" · holos from $"+minHolo;
-  t+=" · offers & bundles welcome";
-  document.getElementById("tagline").textContent=t;
+  let s=live.length+" "+t.cards+" · "+sets.join(" · ");
+  if(isFinite(minHolo)) s+=" · "+t.holosfrom+minHolo;
+  s+=" · "+t.tagend;
+  $("tagline").textContent=s;
 }
 
-function lbShow(){
-  const p=lbList[lbI];
-  document.getElementById("lbimg").src=photo(p);
-  document.getElementById("lbcap").textContent="#"+p.id+" · "+p.name+" · "+p.num+" · "+p.set;
+/* ---------- bundle ---------- */
+function bundleItems(){return bundle.map(byId).filter(Boolean);}
+function bundleMsg(){
+  const t=T(),items=bundleItems();
+  const total=items.reduce((a,p)=>a+(p.price||0),0);
+  let lines;
+  if(items.length>40) lines=[items.map(p=>"#"+p.id).join(" ")];
+  else lines=items.map(p=>"#"+p.id+" "+p.name+" "+p.num+" — "+(p.price==null?t.offer:"$"+p.price));
+  let m=t.bmsg.replace("{n}",items.length)+"\n"+lines.join("\n")+"\n"+t.btotal.replace("{t}",total);
+  if(items.length>=BUNDLE_MIN) m+="\n"+t.bdisc;
+  return m;
 }
-function openLb(i){lbI=i;lbShow();document.getElementById("lb").classList.add("on");}
-function closeLb(){document.getElementById("lb").classList.remove("on");}
+function updateBar(){
+  const t=T(),items=bundleItems(),n=items.length;
+  document.body.classList.toggle("hasbar",n>0);
+  if(!n){listOpen=false;$("blist").classList.remove("on");return;}
+  const total=items.reduce((a,p)=>a+(p.price||0),0);
+  $("bsum").innerHTML=t.bundle+": "+n+" "+(n!==1?t.cards:t.card)+" · <span>$"+total+"</span>";
+  $("bview").textContent=listOpen?t.hide:t.view;
+  $("bclear").textContent=t.clear;
+  $("bsend").textContent=t.send;
+  $("bsend").href=tgLink(bundleMsg());
+  $("bhint").textContent=n>=BUNDLE_MIN?t.disc:t.more.replace("{n}",BUNDLE_MIN-n);
+  $("blist").innerHTML=items.map(p=>`<div class="bi"><span class="bn">#${p.id} ${esc(p.name)} ${p.num}</span><span class="bp">${p.price==null?t.offer:"$"+p.price}</span><span class="rm" data-id="${p.id}" title="${t.clear}">&times;</span></div>`).join("");
+  $("blist").classList.toggle("on",listOpen);
+}
+function syncAddButtons(){
+  const t=T();
+  document.querySelectorAll(".add").forEach(b=>{const on=bundle.includes(b.getAttribute("data-id"));b.classList.toggle("on",on);b.textContent=on?t.added:t.add;});
+}
+function toggleBundle(id){
+  const p=byId(id);if(!p||p.sold)return;
+  const i=bundle.indexOf(id);
+  if(i>=0)bundle.splice(i,1);else bundle.push(id);
+  saveBundle();syncAddButtons();updateBar();
+}
+
+/* ---------- lightbox + per-card links ---------- */
+function lbShow(){
+  const p=lbList[lbI],t=T(),pt=priceText(p);
+  $("lbimg").src=photo(p);
+  $("lbimg").alt=p.name+" "+p.num+" "+p.set;
+  $("lbcap").textContent="#"+p.id+" · "+p.name+" · "+p.num+" · "+p.set+" · "+rarLabel(p.rar);
+  $("lbpr").innerHTML="<b>"+pt.big+"</b> "+(pt.obo||"")+" · "+esc(condOf(p));
+  $("lbbtns").innerHTML=buyButtons(p)+`<button class="btn add lnk2" data-link="${p.id}">${t.link}</button>`;
+  try{history.replaceState(null,"","#"+p.id);}catch(e){}
+}
+function openLb(i){lbI=i;lbShow();$("lb").classList.add("on");}
+function closeLb(){$("lb").classList.remove("on");try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}}
 function lbStep(d){lbI=(lbI+d+lbList.length)%lbList.length;lbShow();}
-document.getElementById("lb").addEventListener("click",e=>{if(e.target.id==="lb")closeLb();});
+function openById(id){
+  let i=lbList.findIndex(p=>p.id===id);
+  if(i<0){
+    if(!byId(id))return;
+    state.q="";state.set="All";state.rar="All";$("q").value="";
+    rebuildChips();render();
+    i=lbList.findIndex(p=>p.id===id);
+    if(i<0)return;
+  }
+  openLb(i);
+}
+function handleHash(){
+  const h=(location.hash||"").replace("#","").replace(/^item-/,"");
+  if(/^\d{3}$/.test(h))openById(h);
+}
+function copyItemLink(id){copyText(SITE+"#"+id);showToast(T().linktoast);}
+
+document.addEventListener("click",e=>{
+  const el=e.target;
+  const lk=el.closest("[data-link]");if(lk){copyItemLink(lk.getAttribute("data-link"));return;}
+  const ln=el.closest(".lnk");if(ln){copyItemLink(ln.getAttribute("data-id"));return;}
+  const ad=el.closest(".add");if(ad){toggleBundle(ad.getAttribute("data-id"));return;}
+  const rm=el.closest(".rm");if(rm){toggleBundle(rm.getAttribute("data-id"));return;}
+  const ph=el.closest(".ph");if(ph){openById(ph.getAttribute("data-id"));return;}
+  const lc=el.closest(".lc");if(lc){setLang(lc.getAttribute("data-lang"));return;}
+  if(el.id==="lb"||el.id==="lbx"){closeLb();return;}
+  if(el.id==="lbprev"){lbStep(-1);return;}
+  if(el.id==="lbnext"){lbStep(1);return;}
+  if(el.id==="bview"){listOpen=!listOpen;updateBar();return;}
+  if(el.id==="bclear"){bundle=[];saveBundle();syncAddButtons();updateBar();return;}
+  if(el.id==="bsend"){copyText(bundleMsg());showToast(T().msgtoast);return;}
+});
 document.addEventListener("keydown",e=>{
-  if(!document.getElementById("lb").classList.contains("on"))return;
+  if(!$("lb").classList.contains("on"))return;
   if(e.key==="Escape")closeLb();
   if(e.key==="ArrowLeft")lbStep(-1);
   if(e.key==="ArrowRight")lbStep(1);
 });
+$("q").addEventListener("input",e=>{state.q=e.target.value;render();});
+$("sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
+window.addEventListener("hashchange",handleHash);
 
-document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value;render();});
-document.getElementById("sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
+function applyLang(){
+  const t=T();
+  document.documentElement.lang=lang;
+  $("subt").textContent=t.sub;
+  $("q").placeholder=t.search;
+  $("l-sort").textContent=t.sort;
+  $("l-set").textContent=t.set;
+  $("l-rar").textContent=t.rar;
+  const so=$("sort").options;
+  so[0].textContent=t.value;so[1].textContent=t.binder;so[2].textContent=t.plh;so[3].textContent=t.phl;so[4].textContent=t.naz;so[5].textContent=t.nza;
+  $("foot").textContent=t.footer;
+  $("xlink").textContent=t.xlink;
+  $("xlink2").textContent=t.xlink;
+  $("lang-es").classList.toggle("on",lang==="es");
+  $("lang-en").classList.toggle("on",lang==="en");
+  rebuildChips();renderStats();render();updateBar();
+  if($("lb").classList.contains("on"))lbShow();
+}
+function setLang(l){lang=l;try{localStorage.setItem("lang",l);}catch(e){}applyLang();}
 
-buildChips("sets",uniq("set").sort((a,b)=>(SETORDER[a]||9)-(SETORDER[b]||9)),"set");
-buildChips("rars",uniq("rar").sort((a,b)=>(RARORDER[a]||9)-(RARORDER[b]||9)),"rar");
-renderStats();
-render();
+/* product data for search engines, generated from PRODUCTS so it never goes stale */
+(function(){
+  const items=PRODUCTS.map((p,i)=>{
+    const prod={"@type":"Product",name:p.name+" "+p.num+" - "+p.set+" ("+p.year+")",image:SITE+photo(p),url:SITE+"#"+p.id,category:"Trading Cards",brand:{"@type":"Brand",name:"Pokémon TCG"},description:p.rar+" · "+(p.cond||DEF_COND)};
+    if(p.price!=null) prod.offers={"@type":"Offer",priceCurrency:"USD",price:p.price,itemCondition:"https://schema.org/UsedCondition",availability:p.sold?"https://schema.org/OutOfStock":"https://schema.org/InStock",url:SITE+"#"+p.id};
+    return {"@type":"ListItem",position:i+1,item:prod};
+  });
+  const s=document.createElement("script");s.type="application/ld+json";
+  s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"ItemList",name:"Vintage Pokémon Cards for Sale · San Juan, PR",itemListElement:items});
+  document.head.appendChild(s);
+})();
+
+applyLang();
+handleHash();
 </script>
 </body>
 </html>

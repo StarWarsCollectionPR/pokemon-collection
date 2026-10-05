@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://starwarscollectionpr.github.io/pokemon-collection/sitemap.xml
